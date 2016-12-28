@@ -1,8 +1,12 @@
 var express=require('express');
+//var connect=require('connect');
 var app=express();
 
-app.get("/signup",function (req,res) {
 
-var user=req.body.toString();
+app.use(express.static(__dirname+'/public'))
 
-})
+require('./routes.js')(app);
+
+var server=app.listen(8000,function(){
+    console.log("server running in port 8000");
+});

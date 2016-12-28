@@ -1,0 +1,9 @@
+{
+  "name": "mentor",
+  "version": "0.0.1",
+  "main":"app.js",
+  "dependencies": {
+    "express":"*",
+    "connect":"*"
+  }
+}
