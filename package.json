@@ -3,7 +3,10 @@
   "version": "0.0.1",
   "main":"app.js",
   "dependencies": {
-    "express":"*",
-    "connect":"*"
+    "express": "latest",
+    "mongodb": "latest",
+    "twilio": "latest",
+    "body-parser": "latest",
+    "connect":"latest"
   }
 }
