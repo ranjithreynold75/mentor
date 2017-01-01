@@ -10,8 +10,6 @@ var urlencoder=bodyparser.urlencoded({extended:false});
 module.exports=function(app) {
 
 
-
-
     app.post('/user_signup',urlencoder, function (req, res)
     {
 mc.connect(url,function(err,db){
@@ -90,18 +88,23 @@ var curser=collection.find({_id:req.body.phone});
              {
                  var collection=db.collection('user');
 
-                 collection.find({_id:phone},function(err,d){
-                     if(d.password==password)
+                 var cursor=collection.find({_id:phone,password:password})
+
+cursor.count(function(err,c){
+                     if(c==1)
                      {
+
+                      console.log("success");
                          res.send("success");
                      }
 
                      else
                      {
+                         console.log("invalid");
                          res.send("invalid");
                      }
 
-                 })
+})
              }
 
          })
@@ -110,7 +113,30 @@ var curser=collection.find({_id:req.body.phone});
     })
 
 app.get('/',function(req,res){
-    res.end("welcome to Mentor");
+
+    mc.connect(url,function(err,db){
+        if(err)
+            console.log("db error");
+
+        else
+        {
+            var collection=db.collection('user');
+            /*var cursor=collection.find({_id:'8754623583'});
+cursor.each(function(err,d){
+    console.log(d);
+})*/
+            collection.find({_id:'8754623583'}).forEach(function(x){
+                console.log(x.username);
+                if(x.username=='ranjith reynold')
+                    res.send("hai moto");
+            })
+
+        }
+
+    })
+
+
+
 })
 
 
