@@ -2,11 +2,17 @@
   "name": "mentor",
   "version": "0.0.1",
   "main":"app.js",
+ "scripts": {
+   "start":"node ./public/app.js"
+ },
   "dependencies": {
     "express": "latest",
     "mongodb": "latest",
     "twilio": "latest",
     "body-parser": "latest",
     "connect":"latest"
-  }
+  },
+  "author":"mentordevteam",
+    "license": "VIT"
+
 }
