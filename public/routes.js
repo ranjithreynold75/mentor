@@ -112,7 +112,7 @@ cursor.count(function(err,c){
 
 
     })
-
+/*
 app.get('/',function(req,res){
 
     mc.connect(url,function(err,db){
@@ -125,7 +125,7 @@ app.get('/',function(req,res){
             /*var cursor=collection.find({_id:'8754623583'});
 cursor.each(function(err,d){
     console.log(d);
-})*/
+})
             collection.find({_id:'8754623583'}).forEach(function(x){
                 console.log(x.username);
                 if(x.username=='ranjith reynold')
@@ -138,8 +138,10 @@ cursor.each(function(err,d){
 
 
 
+}) */
+app.get('/',function(req,res){
+    res.send("welcome to mentor");
 })
-
 
 
 }
