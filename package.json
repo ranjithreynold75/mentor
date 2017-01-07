@@ -13,6 +13,10 @@
     "connect":"latest"
   },
   "author":"mentordevteam",
-    "license": "VIT"
+    "license": "VIT",
+  "engines": {
+    "node":"4.5.0",
+    "npm":"2.15.9"
 
+  }
 }
