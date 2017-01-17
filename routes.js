@@ -2,13 +2,11 @@ var fs=require('fs');
 var bodyparser=require('body-parser');
 var m=require('mongodb');
 var mc=m.MongoClient;
-<<<<<<< HEAD:routes.js
+
 var url='mongodb://localhost:27017/mentor';
 var admin=require('./data.js');
-=======
 var url = 'mongodb://admin:admin@ds049624.mlab.com:49624/mentor';
 
->>>>>>> a5556fb04fbae5a74fdd6290de2a43860bdda275:public/routes.js
 var urlencoder=bodyparser.urlencoded({extended:false});
 var id=require('idgen');
 //multer

@@ -1,28 +1,26 @@
 {
   "name": "mentor",
   "version": "0.0.1",
-<<<<<<< HEAD
   "main":"app.js",
  "scripts": {
    "start":"node app.js"
  },
-=======
+
   "main": "app.js",
   "scripts": {
     "start": "node ./public/app.js"
   },
->>>>>>> a5556fb04fbae5a74fdd6290de2a43860bdda275
+
   "dependencies": {
     "express": "latest",
     "mongodb": "latest",
     "twilio": "latest",
     "body-parser": "latest",
-<<<<<<< HEAD
     "connect":"latest",
     "module":"latest"
-=======
+
     "connect": "latest"
->>>>>>> a5556fb04fbae5a74fdd6290de2a43860bdda275
+
   },
   "author": "mentordevteam",
   "license": "VIT",
