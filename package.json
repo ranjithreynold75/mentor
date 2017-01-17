@@ -17,8 +17,7 @@
     "twilio": "latest",
     "body-parser": "latest",
     "connect":"latest",
-    "module":"latest"
-
+    "module":"latest",
     "connect": "latest"
 
   },
