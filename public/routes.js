@@ -2,7 +2,7 @@ var fs=require('fs');
 var bodyparser=require('body-parser');
 var m=require('mongodb');
 var mc=m.MongoClient;
-var url='mongodb://localhost:27017/mentor';
+var url = 'mongodb://admin:admin@ds049624.mlab.com:49624/mentor';
 
 var urlencoder=bodyparser.urlencoded({extended:false});
 
@@ -16,7 +16,7 @@ module.exports=function(app) {
         console.log("profilepic request by "+phone);
         //var data=fs.readFileSync("./profile/"+phone+".jpg");
 
-        fs.readFile("D:/mentor/profile/"+phone+".jpg",function(err,data){
+        fs.readFile("../profile/"+phone+".jpg",function(err,data){
             if(err)
                 console.log("error retrivel");
             else

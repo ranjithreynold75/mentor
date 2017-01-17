@@ -1,22 +1,21 @@
 {
   "name": "mentor",
   "version": "0.0.1",
-  "main":"app.js",
- "scripts": {
-   "start":"node ./public/app.js"
- },
+  "main": "app.js",
+  "scripts": {
+    "start": "node ./public/app.js"
+  },
   "dependencies": {
     "express": "latest",
     "mongodb": "latest",
     "twilio": "latest",
     "body-parser": "latest",
-    "connect":"latest"
+    "connect": "latest"
   },
-  "author":"mentordevteam",
-    "license": "VIT",
+  "author": "mentordevteam",
+  "license": "VIT",
   "engines": {
-    "node":"4.5.0",
-    "npm":"2.15.9"
-
+    "node": "4.5.0",
+    "npm": "2.15.9"
   }
 }
