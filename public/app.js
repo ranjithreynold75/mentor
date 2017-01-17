@@ -15,6 +15,6 @@ app.use(bodyparser.json({limit: '50mb'}));
 app.use(bodyparser.urlencoded({limit: '50mb', extended: true}));
 require('./routes.js')(app);
 
-var server=app.listen(8000,function(){
-    console.log("server running in port 8000");
+var server=app.listen(process.env.PORT || 5000,function(){
+    console.log("server running in port "+(process.env.PORT || 5000));
 });
