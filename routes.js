@@ -2,9 +2,26 @@ var fs=require('fs');
 var bodyparser=require('body-parser');
 var m=require('mongodb');
 var mc=m.MongoClient;
+<<<<<<< HEAD:routes.js
+var url='mongodb://localhost:27017/mentor';
+var admin=require('./data.js');
+=======
 var url = 'mongodb://admin:admin@ds049624.mlab.com:49624/mentor';
 
+>>>>>>> a5556fb04fbae5a74fdd6290de2a43860bdda275:public/routes.js
 var urlencoder=bodyparser.urlencoded({extended:false});
+var id=require('idgen');
+//multer
+var multer=require('multer');
+var upload=multer({dest:'/tmp/'});
+
+
+//connecting to mongodb
+var db=require('./mongodb');
+//var gfs=require('girdfs-stream');
+db.connecttoserver(function(err){
+    console.log(err);
+})
 
 
 module.exports=function(app) {
@@ -31,23 +48,10 @@ module.exports=function(app) {
 
 
 
-
-
-
-
-
-
     app.post('/user_signup',urlencoder,function (req, res)
     {
-mc.connect(url,function(err,db){
-    if(err)
-    {
-        console.log("mondodb connection error");
-    }
-
-else {
-
-var collection=db.collection('user');
+var d=db.getdb();
+var collection=d.collection('user');
 
 var curser=collection.find({_id:req.body.phone});
 
@@ -107,10 +111,8 @@ var image=req.body.profile_image;
     }
         })
 
-    }
 
 
-});
 
 });
 
@@ -120,14 +122,8 @@ var image=req.body.profile_image;
         var password=req.body.password;
         console.log(phone);
         console.log(password);
-        mc.connect(url,function(err,db){
-             if(err)
-             {
-                 console.log("mongodb error");
-             }
-             else
-             {
-                 var collection=db.collection('user');
+             var d=db.getdb();
+                 var collection=d.collection('user');
 
                  collection.find({_id:phone,password:password}).forEach(function(x){
 
@@ -135,7 +131,8 @@ var image=req.body.profile_image;
                      {
                          console.log(phone+" logged in");
                          res.send('success');
-
+                       admin.no_users_online+=1;
+                    console.log(admin.no_users_online);
                      }
                      else{
                          res.send('invalid');
@@ -144,9 +141,9 @@ var image=req.body.profile_image;
                  })
 
 
-             }
 
-         })
+
+
 
 
     });
@@ -154,8 +151,48 @@ var image=req.body.profile_image;
 
 
 app.get('/',function(req,res){
-    res.send("welcome to mentor");
+
+
+    res.send("Mentor is ONLINE");
+
+
 });
+
+
+app.post('/user_product',function (req,res) {
+var d=db.getdb();
+    var collection=d.collection('product');
+
+
+    //var imgid1=id(18);
+    //var imgid2=id(18);
+
+    //var gridfs=gfs(d.db);
+
+    var img1=req.body.i;
+    var img2=req.body.s;
+
+    var pid=id(18);
+    var data={
+        _id:pid,
+        name:req.body.name,
+        price:req.body.price,
+        tag:[req.body.cat,req.body.sub],
+        owner:req.body.phone,
+        negotiable:req.body.negotiable,
+        n_price:req.body.n_price,
+        no_years_used:req.body.no_years_used,
+        second_hand:req.body.second_hand,
+        img1:img1,
+        img2:img2,
+        description:req.body.description
+    }
+collection.insertOne(data,function(err){if(err) console.log("db error")})
+
+    res.send("product Updated");
+
+
+})
 
 
 }

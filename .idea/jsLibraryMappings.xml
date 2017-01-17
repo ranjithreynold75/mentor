@@ -2,7 +2,9 @@
 <project version="4">
   <component name="JavaScriptLibraryMappings">
     <file url="file://$PROJECT_DIR$" libraries="{mentor/node_modules}" />
-    <file url="file://$PROJECT_DIR$/public/app.js" libraries="{nodejs}" />
-    <file url="file://$PROJECT_DIR$/public/routes.js" libraries="{nodejs}" />
+    <file url="file://$PROJECT_DIR$/app.js" libraries="{nodejs}" />
+    <file url="file://$PROJECT_DIR$/data.js" libraries="{nodejs}" />
+    <file url="file://$PROJECT_DIR$/mongodb.js" libraries="{nodejs}" />
+    <file url="file://$PROJECT_DIR$/routes.js" libraries="{nodejs}" />
   </component>
 </project>
