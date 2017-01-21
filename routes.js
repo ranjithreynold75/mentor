@@ -11,12 +11,18 @@ var urlencoder=bodyparser.urlencoded({extended:false});
 var id=require('idgen');
 //multer
 var multer=require('multer');
-var upload=multer({dest:'/tmp/'});
-
+var storage=multer.diskStorage({
+    destination:function(req,file,callback){
+        callback(null,'../profile/');
+    },
+    filename:function(req,file,callback){
+        callback(null,file.fieldname+".jpg");
+    }
+});
+var upload=multer({storage:storage}).array("allto",3);
 
 //connecting to mongodb
 var db=require('./mongodb');
-//var gfs=require('girdfs-stream');
 db.connecttoserver(function(err){
     console.log(err);
 })
@@ -57,7 +63,7 @@ var curser=collection.find({_id:req.body.phone});
 
     if(c==0) {
 
-var image=req.body.profile_image;
+/*var image=req.body.profile_image;
         var bitmap=new Buffer(image,"base64");
         fs.writeFile("./profile/"+req.body.phone+".jpg",bitmap,function(err,data){
             if(err)
@@ -69,8 +75,12 @@ var image=req.body.profile_image;
                 console.log("picture uploaded");
             }
 
-        })
-        data = {
+        })*/
+
+
+
+
+data = {
             _id: req.body.phone,
             username: req.body.username,
             email: req.body.email,
@@ -86,8 +96,12 @@ var image=req.body.profile_image;
             access: "not verified",
             shop_owner: "no",
             profile_image:"/profile/"+req.body.phone+".jpg"
-        };
+};
 
+upload(req,res,function(err){
+    if(err)
+        console.log("image signup upload error");
+})
 
         collection.insertOne(data, function (err) {
             if (err) {
@@ -95,7 +109,7 @@ var image=req.body.profile_image;
             }
             else {
                 res.send("Welcome to Mentor");
-                console.log("user signed up"+req.body.username);
+               console.log("user signed up"+req.body.username);
             }
 
 
@@ -162,10 +176,6 @@ var d=db.getdb();
     var collection=d.collection('product');
 
 
-    //var imgid1=id(18);
-    //var imgid2=id(18);
-
-    //var gridfs=gfs(d.db);
 
     var img1=req.body.i;
     var img2=req.body.s;

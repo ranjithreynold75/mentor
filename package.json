@@ -18,7 +18,8 @@
     "body-parser": "latest",
     "connect":"latest",
     "module":"latest",
-    "connect": "latest"
+    "connect": "latest",
+    "multer":"latest"
 
   },
   "author": "mentordevteam",
