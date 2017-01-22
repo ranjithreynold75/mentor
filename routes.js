@@ -120,7 +120,7 @@ fs.readFile(req.file.path,function(err,data){
              var d=db.getdb();
                  var collection=d.collection('user');
       var flag=0;
-              var curser=collection.find({_id:phone,password:password}).forEach(function(x){
+              var curser=collection.find({_id:phone,password:password})/*.forEach(function(x){
 
                      if(phone==x._id && password==x.password)
                      {
@@ -131,13 +131,21 @@ fs.readFile(req.file.path,function(err,data){
                          console.log(admin.no_users_online);
                      }
 
-                 })
+                 })*/
 
 
     curser.count(function(err,c){
         if(c==0)
         {
             res.send("invalid");
+        }
+        else
+        {
+            console.log("valid");
+            console.log(phone+" logged in");
+            res.send('success');
+            admin.no_users_online+=1;
+            console.log(admin.no_users_online);
         }
     });
 
