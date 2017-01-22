@@ -125,7 +125,7 @@ fs.readFile(req.file.path,function(err,data){
                      if(phone==x._id && password==x.password)
                      {
                      flag=1;
-                       
+                       console.log(flag);
                      }
 
                  })
