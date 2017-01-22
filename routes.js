@@ -120,33 +120,28 @@ fs.readFile(req.file.path,function(err,data){
              var d=db.getdb();
                  var collection=d.collection('user');
       var flag=0;
-                 collection.find({_id:phone,password:password}).forEach(function(x){
+              var curser=collection.find({_id:phone,password:password}).forEach(function(x){
 
                      if(phone==x._id && password==x.password)
                      {
-                     flag=1;
-                       console.log(flag);
-                     }
-                     else
-                     {
-                         console.log(x.phone+x.password+"pass");
+                         console.log("valid");
+                         console.log(phone+" logged in");
+                         res.send('success');
+                         admin.no_users_online+=1;
+                         console.log(admin.no_users_online);
                      }
 
                  })
-         if(flag==1)
-         {
-             console.log("valid");
-             console.log(phone+" logged in");
-             res.send('success');
-             admin.no_users_online+=1;
-             console.log(admin.no_users_online);
 
-         }
-         else
-         {
-             console.log(flag+" invalid");
-             res.send('invalid');
-         }
+
+    curser.count(function(err,c){
+        if(c==0)
+        {
+            res.send("invalid");
+        }
+    });
+
+
 
     });
 
