@@ -131,6 +131,7 @@ fs.readFile(req.file.path,function(err,data){
                  })
          if(flag==1)
          {
+             console.log("valid");
              console.log(phone+" logged in");
              res.send('success');
              admin.no_users_online+=1;
@@ -139,6 +140,7 @@ fs.readFile(req.file.path,function(err,data){
          }
          else
          {
+             console.log(flag+" invalid");
              res.send('invalid');
          }
 
