@@ -127,6 +127,10 @@ fs.readFile(req.file.path,function(err,data){
                      flag=1;
                        console.log(flag);
                      }
+                     else
+                     {
+                         console.log(x.phone+x.password+"pass");
+                     }
 
                  })
          if(flag==1)
