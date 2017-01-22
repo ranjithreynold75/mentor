@@ -13,7 +13,7 @@ var id=require('idgen');
 
 //multer
 var multer=require('multer');
-var up=multer({dest:'profile/'});
+var upload=multer({dest:'profile/'});
 
 //connecting to mongodb
 var db=require('./mongodb');
@@ -46,7 +46,7 @@ module.exports=function(app) {
 
 
 
-    app.post('/user_signup',up.single('avatar'),function (req, res)
+    app.post('/user_signup',upload.single('avatar'),function (req, res)
     {
 var d=db.getdb();
 var collection=d.collection('user');
@@ -57,29 +57,12 @@ var curser=collection.find({_id:req.body.phone});
 
     if(c==0) {
 
-/*var image=req.body.profile_image;
-        var bitmap=new Buffer(image,"base64");
-        fs.writeFile("./profile/"+req.body.phone+".jpg",bitmap,function(err,data){
-            if(err)
-            {
-                console.log("error on picture upload");
-            }
-            else
-            {
-                console.log("picture uploaded");
-            }
-
-        })*/
-
-
-
 
 data = {
             _id: req.body.phone,
             username: req.body.username,
             email: req.body.email,
             password: req.body.password,
-            //picture:"D:\mentor\profile\\"+req.body.phone+".png",
             location: {
                 longitude: req.body.longitude,
                 latitude: req.body.latitude
