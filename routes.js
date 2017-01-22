@@ -119,27 +119,31 @@ fs.readFile(req.file.path,function(err,data){
         console.log(password);
              var d=db.getdb();
                  var collection=d.collection('user');
-
+      var flag=0;
                  collection.find({_id:phone,password:password}).forEach(function(x){
 
                      if(phone==x._id && password==x.password)
                      {
-                         console.log(phone+" logged in");
-                         res.send('success');
-                       admin.no_users_online+=1;
-                    console.log(admin.no_users_online);
+                     flag=1;
+
                      }
                      else{
-                         res.send('invalid');
+                 flag=0;
                      }
 
                  })
+         if(flag==1)
+         {
+             console.log(phone+" logged in");
+             res.send('success');
+             admin.no_users_online+=1;
+             console.log(admin.no_users_online);
 
-
-
-
-
-
+         }
+         else
+         {
+             res.send('invalid');
+         }
 
     });
 
@@ -148,7 +152,7 @@ fs.readFile(req.file.path,function(err,data){
 app.get('/',function(req,res){
 
 
-    res.send("Mentor is ONLINE");
+    res.redirect("http://www.mentorapp.esy.es/");
 
 
 });
