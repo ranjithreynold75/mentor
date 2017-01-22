@@ -1,4 +1,5 @@
 var fs=require('fs');
+var path=require('path');
 var bodyparser=require('body-parser');
 var m=require('mongodb');
 var mc=m.MongoClient;
@@ -9,17 +10,10 @@ var url = 'mongodb://admin:admin@ds049624.mlab.com:49624/mentor';
 
 var urlencoder=bodyparser.urlencoded({extended:false});
 var id=require('idgen');
+
 //multer
 var multer=require('multer');
-var storage=multer.diskStorage({
-    destination:function(req,file,callback){
-        callback(null,'../profile/');
-    },
-    filename:function(req,file,callback){
-        callback(null,file.fieldname+".jpg");
-    }
-});
-var upload=multer({storage:storage}).array("allto",3);
+var up=multer({dest:'profile/'});
 
 //connecting to mongodb
 var db=require('./mongodb');
@@ -52,7 +46,7 @@ module.exports=function(app) {
 
 
 
-    app.post('/user_signup',urlencoder,function (req, res)
+    app.post('/user_signup',up.single('avatar'),function (req, res)
     {
 var d=db.getdb();
 var collection=d.collection('user');
@@ -98,10 +92,16 @@ data = {
             profile_image:"/profile/"+req.body.phone+".jpg"
 };
 
-upload(req,res,function(err){
-    if(err)
-        console.log("image signup upload error");
+fs.readFile(req.file.path,function(err,data){
+    var filename=__dirname+"/"+req.file;
+    var newpath=__dirname+"/profile/"+req.file.originalname+path.extname(filename);
+    fs.writeFile(newpath,data,function(err){
+        if(err){
+            console.log("image writing error");
+        }
+    });
 })
+
 
         collection.insertOne(data, function (err) {
             if (err) {
