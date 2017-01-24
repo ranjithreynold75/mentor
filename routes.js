@@ -21,7 +21,7 @@ db.connecttoserver(function(err){
     console.log(err);
 })
 
-var d1=db.getdb();
+
 module.exports=function(app) {
 
 
@@ -48,8 +48,8 @@ module.exports=function(app) {
 
     app.post('/user_signup',upload.single('avatar'),function (req, res)
     {
-
-var collection=d1.collection('user');
+        var d=db.getdb();
+var collection=d.collection('user');
 
 
 var curser=collection.find({_id:req.body.phone});

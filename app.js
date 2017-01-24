@@ -23,4 +23,4 @@ require('./routes.js')(app);
 var server=app.listen(process.env.PORT || 5000,function(){
     console.log("server running in port "+(process.env.PORT || 5000));
 });
-server.timeout=140000;
+server.timeout=200000;
