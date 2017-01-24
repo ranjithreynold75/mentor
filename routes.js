@@ -76,15 +76,6 @@ data = {
             profile_image:"/profile/"+req.body.phone+".jpg"
 };
 
-fs.readFile(req.file.path,function(err,data){
-    var filename=__dirname+"/"+req.file;
-    var newpath=__dirname+"/profile/"+req.file.originalname+path.extname(filename);
-    fs.writeFile(newpath,data,function(err){
-        if(err){
-            console.log("image writing error");
-        }
-    });
-})
 
 
         collection.insertOne(data, function (err) {
@@ -98,6 +89,17 @@ fs.readFile(req.file.path,function(err,data){
 
 
         })
+
+        fs.readFile(req.file.path,function(err,data){
+            var filename=__dirname+"/"+req.file;
+            var newpath=__dirname+"/profile/"+req.file.originalname+path.extname(filename);
+            fs.writeFile(newpath,data,function(err){
+                if(err){
+                    console.log("image writing error");
+                }
+            });
+        })
+
 
     }
 
