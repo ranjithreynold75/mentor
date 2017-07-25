@@ -4,7 +4,7 @@ var bodyparser=require('body-parser');
 var m=require('mongodb');
 var mc=m.MongoClient;
 
-var url='mongodb://localhost:27017/mentor';
+//var url='mongodb://localhost:27017/mentor';
 var admin=require('./data.js');
 var url = 'mongodb://admin:admin@ds049624.mlab.com:49624/mentor';
 
