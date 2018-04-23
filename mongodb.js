@@ -1,6 +1,6 @@
 var m=require('mongodb');
 var mc=m.MongoClient;
-var url='mongodb://admin:admin@ds049624.mlab.com:49624/mentor';
+var url='mongodb://admin:@ds049624.mlab.com:49624/mentor';
 var _db;
 module.exports={
    connecttoserver:function(callback){
